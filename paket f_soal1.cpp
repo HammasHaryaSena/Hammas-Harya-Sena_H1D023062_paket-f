@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAXQUEUE 5
+#define MAXQUEUE 4
 
 typedef struct{
     int count;
@@ -51,13 +51,17 @@ void hapus(QUEUE *Q){
 		printf("sudah kosong");
 	} else{
 		Q->item[Q->front]=0;
-		Q->front++;
+		for(int i=0;i<MAXQUEUE;i++){
+			Q->item[i]=Q->item[i+1];
+		}
+		Q->rear--;
 		Q->count--;
 	}
 }
 
 void print(QUEUE *Q){
 	for(int i;i<=MAXQUEUE;i++){
+		
 		if(Q->item[i]!=0){
 		printf("%d ",Q->item[i]);
 	}
@@ -93,7 +97,6 @@ int main(){
 	print(&antrean);
 return 0;
 }
-
 
 
 
